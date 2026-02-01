@@ -11,6 +11,11 @@ A **TurtleBot3 Waffle Pi** that autonomously follows a color-marked target throu
 
 This project began as a **MediaPipe-based person-following** system. In practice, MediaPipe's pose-estimation models — trained on photorealistic images — failed against Gazebo's synthetic meshes (jittery landmarks, frequent false negatives). The perception layer was pivoted to **HSV color-space tracking**: a neon-green cylinder stands in for the human operator, and a five-stage OpenCV pipeline (blur → HSV convert → threshold → morphology → contour) delivers deterministic, sub-5 ms detections. The control and safety layers were left unchanged, proving the system's modularity.
 
+### Simulation
+
+![Warehouse Simulation](warehouse_gzclient_camera(1)-2026-02-01T18_33_53.951204.jpg)
+
+
 
 ### System Architecture
 
