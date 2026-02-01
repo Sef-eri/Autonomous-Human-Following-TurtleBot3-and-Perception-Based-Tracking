@@ -46,7 +46,7 @@ This project began as a **MediaPipe-based person-following** system. In practice
 
 All commands below assume a **fresh Ubuntu 22.04** installation.
 
-### 1 — ROS 2 Humble (Desktop)
+### 1 — ROS 2 Humble 
 
 Follow the official guide: [docs.ros.org/en/humble/Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
 
