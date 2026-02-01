@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="warehouse">
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+
+    <!-- Warehouse Floor -->
+    <model name="warehouse_floor">
+      <static>true</static>
+      <pose>0 0 0.01 0 0 0</pose>
+      <link name="floor_link">
+        <collision name="collision">
+          <geometry><box><size>20 20 0.02</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 20 0.02</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Walls -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 10 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>20 0.2 2</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>20 0.2 2</size></box></geometry><material><ambient>0.7 0.7 0.7 1</ambient></material></visual>
+      </link>
+    </model>
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -10 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>20 0.2 2</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>20 0.2 2</size></box></geometry><material><ambient>0.7 0.7 0.7 1</ambient></material></visual>
+      </link>
+    </model>
+    <model name="wall_east">
+      <static>true</static>
+      <pose>10 0 1 0 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>20 0.2 2</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>20 0.2 2</size></box></geometry><material><ambient>0.7 0.7 0.7 1</ambient></material></visual>
+      </link>
+    </model>
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-10 0 1 0 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>20 0.2 2</size></box></geometry></collision>
+        <visual name="visual"><geometry><box><size>20 0.2 2</size></box></geometry><material><ambient>0.7 0.7 0.7 1</ambient></material></visual>
+      </link>
+    </model>
+
+    <!-- Shelves -->
+    <model name="shelf_1"><static>true</static><pose>-6 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.5 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>1.5 12 2</size></box></geometry><material><ambient>0.6 0.4 0.2 1</ambient></material></visual></link></model>
+    <model name="shelf_2"><static>true</static><pose>-2 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.5 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>1.5 12 2</size></box></geometry><material><ambient>0.6 0.4 0.2 1</ambient></material></visual></link></model>
+    <model name="shelf_3"><static>true</static><pose>2 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.5 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>1.5 12 2</size></box></geometry><material><ambient>0.6 0.4 0.2 1</ambient></material></visual></link></model>
+    <model name="shelf_4"><static>true</static><pose>6 0 1 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1.5 12 2</size></box></geometry></collision><visual name="v"><geometry><box><size>1.5 12 2</size></box></geometry><material><ambient>0.6 0.4 0.2 1</ambient></material></visual></link></model>
+
+    <!-- Pallets -->
+    <model name="pallet_1"><static>true</static><pose>-4 4 0.25 0 0 0</pose><link name="link"><collision name="c"><geometry><box><size>1 1 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>1 1 0.5</size></box></geometry><material><ambient>0.8 0.6 0.2 1</ambient></material></visual></link></model>
+    <model name="pallet_2"><static>true</static><pose>4 -3 0.25 0 0 0.3</pose><link name="link"><collision name="c"><geometry><box><size>1 1 0.5</size></box></geometry></collision><visual name="v"><geometry><box><size>1 1 0.5</size></box></geometry><material><ambient>0.8 0.6 0.2 1</ambient></material></visual></link></model>
+
+    <!-- Static Human Model (Person to Follow) -->
+    <model name="human">
+      <static>false</static>
+      <pose>0 -5 0 0 0 0</pose>
+      <link name="body">
+        <pose>0 0 0.9 0 0 0</pose>
+        <inertial>
+          <mass>70</mass>
+          <inertia>
+            <ixx>10</ixx><ixy>0</ixy><ixz>0</ixz>
+            <iyy>10</iyy><iyz>0</iyz><izz>5</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><cylinder><radius>0.3</radius><length>1.7</length></cylinder></geometry>
+        </collision>
+        <!-- Torso -->
+        <visual name="torso">
+          <pose>0 0 0.1 0 0 0</pose>
+          <geometry><box><size>0.4 0.25 0.55</size></box></geometry>
+          <material><ambient>0.1 0.3 0.7 1</ambient><diffuse>0.2 0.4 0.8 1</diffuse></material>
+        </visual>
+        <!-- Head -->
+        <visual name="head">
+          <pose>0 0 0.5 0 0 0</pose>
+          <geometry><sphere><radius>0.12</radius></sphere></geometry>
+          <material><ambient>0.9 0.75 0.65 1</ambient><diffuse>1.0 0.85 0.75 1</diffuse></material>
+        </visual>
+        <!-- Left Arm -->
+        <visual name="left_arm">
+          <pose>0.28 0 0.05 0 0 0</pose>
+          <geometry><cylinder><radius>0.05</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>0.9 0.75 0.65 1</ambient></material>
+        </visual>
+        <!-- Right Arm -->
+        <visual name="right_arm">
+          <pose>-0.28 0 0.05 0 0 0</pose>
+          <geometry><cylinder><radius>0.05</radius><length>0.5</length></cylinder></geometry>
+          <material><ambient>0.9 0.75 0.65 1</ambient></material>
+        </visual>
+        <!-- Legs -->
+        <visual name="left_leg">
+          <pose>0.1 0 -0.55 0 0 0</pose>
+          <geometry><cylinder><radius>0.07</radius><length>0.55</length></cylinder></geometry>
+          <material><ambient>0.2 0.2 0.3 1</ambient><diffuse>0.3 0.3 0.4 1</diffuse></material>
+        </visual>
+        <visual name="right_leg">
+          <pose>-0.1 0 -0.55 0 0 0</pose>
+          <geometry><cylinder><radius>0.07</radius><length>0.55</length></cylinder></geometry>
+          <material><ambient>0.2 0.2 0.3 1</ambient><diffuse>0.3 0.3 0.4 1</diffuse></material>
+        </visual>
+      </link>
+      <!-- Plugin for keyboard teleoperation of human (optional) -->
+      <plugin name="human_movement" filename="libgazebo_ros_planar_move.so">
+        <ros>
+          <namespace>/human</namespace>
+          <remapping>cmd_vel:=cmd_vel</remapping>
+          <remapping>odom:=odom</remapping>
+        </ros>
+        <update_rate>100</update_rate>
+        <publish_rate>10</publish_rate>
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>body</robot_base_frame>
+      </plugin>
+    </model>
+
+    <gui>
+      <camera name="user_camera">
+        <pose>-12 -8 10 0 0.6 0.4</pose>
+      </camera>
+    </gui>
+  </world>
+</sdf>

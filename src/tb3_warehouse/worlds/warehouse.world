@@ -1,0 +1,234 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="warehouse">
+    <!-- Physics -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground Plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Warehouse Floor -->
+    <model name="warehouse_floor">
+      <static>true</static>
+      <pose>0 0 0.01 0 0 0</pose>
+      <link name="floor_link">
+        <collision name="floor_collision">
+          <geometry>
+            <box><size>20 20 0.02</size></box>
+          </geometry>
+        </collision>
+        <visual name="floor_visual">
+          <geometry>
+            <box><size>20 20 0.02</size></box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Warehouse Walls -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 10 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -10 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <pose>10 0 1 0 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-10 0 1 0 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Warehouse Shelves (Aisles) -->
+    <model name="shelf_row_1">
+      <static>true</static>
+      <pose>-6 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.7 0.5 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="shelf_row_2">
+      <static>true</static>
+      <pose>-2 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.7 0.5 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="shelf_row_3">
+      <static>true</static>
+      <pose>2 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.7 0.5 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="shelf_row_4">
+      <static>true</static>
+      <pose>6 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.5 12 2</size></box></geometry>
+          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.7 0.5 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacles (Boxes/Pallets) -->
+    <model name="pallet_1">
+      <static>true</static>
+      <pose>-4 4 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.6 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="pallet_2">
+      <static>true</static>
+      <pose>4 -3 0.25 0 0 0.3</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.6 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Human Actor (Walking Animation) -->
+    <actor name="human_actor">
+      <skin>
+        <filename>walk.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="walking">
+        <filename>walk.dae</filename>
+        <scale>1.0</scale>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <script>
+        <loop>true</loop>
+        <delay_start>0.0</delay_start>
+        <auto_start>true</auto_start>
+        <trajectory id="0" type="walking">
+          <waypoint>
+            <time>0</time>
+            <pose>0 -7 1.0 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>8</time>
+            <pose>0 7 1.0 0 0 0</pose>
+          </waypoint>
+          <waypoint>
+            <time>8.5</time>
+            <pose>0 7 1.0 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>16.5</time>
+            <pose>0 -7 1.0 0 0 3.14</pose>
+          </waypoint>
+          <waypoint>
+            <time>17</time>
+            <pose>0 -7 1.0 0 0 0</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <!-- Camera Sensor View Point -->
+    <gui>
+      <camera name="user_camera">
+        <pose>-15 0 12 0 0.6 0</pose>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
