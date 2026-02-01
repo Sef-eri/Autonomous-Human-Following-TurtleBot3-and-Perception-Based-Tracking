@@ -43,7 +43,7 @@ All commands below assume a **fresh Ubuntu 22.04** installation.
 
 ### 1 — ROS 2 Humble (Desktop)
 
-Follow the official guide: [docs.ros.org/en/humble/Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html), or run:
+Follow the official guide: [docs.ros.org/en/humble/Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
 
 ### 2 — Gazebo Classic & ROS Integration
 
@@ -138,4 +138,6 @@ This launches Gazebo → spawns the robot → starts the color tracker, follower
 ```bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard cmd_vel:=/target/cmd_vel
 ```
-
+This project was done by:
+Yousf Adem
+Turki Al-Khulaqi
